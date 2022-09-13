@@ -1,12 +1,25 @@
+.todo {
+    background-color: rgb(70, 150, 241);
+    width: 260px;
+    justify-content: center;
+}
+ul > li{
+    border: 1px solid black;
+    justify-content: center;
+    list-style: none;
+    padding: 9px;
+}
 
-/* 
-
-    You can write your own styles here...
+li > button {
+    justify-content: left;
     
-    
-    ...Or you can use the import command to include 
-    other sylesheets into your bunde as well, e.j:
-    
-    import 'relative/path/to/stylesheet.scss';
-
-*/
+}
+input {
+    padding: 7px;
+    border: none;
+}
+button {
+    border: 1px solid gray;
+    margin: 2px;
+    padding: 4px;
+}
