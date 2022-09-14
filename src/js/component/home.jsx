@@ -14,10 +14,10 @@ const [todos, setTodos] = useState([])
 		
       <ul className="flex-column">
 	  <h3>My Todos</h3>
-        <input type="text" onChange={(event)=> setInputValue(event.target.value)}
+        <input type="text" required onChange={(event)=> setInputValue(event.target.value)}
 		value={inputValue} 
-		onKeyPress={(e) => {
-		if (e.key === "Enter") { setTodos(todos.concat(inputValue))
+		onKeyPress={(enter) => {
+		if (enter.key === "Enter") { setTodos(todos.concat(inputValue))
 	    setInputValue("") 
 	}
 }}
