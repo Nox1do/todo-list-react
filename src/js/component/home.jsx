@@ -24,15 +24,15 @@ const [todos, setTodos] = useState([])
 		 placeholder="type text here"/>
         
         {todos.map((item, index) => (
-		<li> {item}
+		<li> <strong>{item}</strong>
 		<button onClick={() =>
-			setTodos(todos.filter((t, currentIndex)=> index != currentIndex))}>x</button>
+			setTodos(todos.filter((t, currentIndex)=> index != currentIndex))}>Borrar</button>
 		</li>
 		
 		
 		))} 
 		
-		<li>{todos.length} Items</li>		
+		<li><strong> {todos.length} </strong> Items</li>		
        
       </ul>  	  
     </div>

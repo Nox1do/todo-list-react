@@ -1,8 +1,15 @@
 .todo {
    border: 1px solid wheat;
-    width: 280px;
+    width: 380px;
     justify-content: center;
+    box-sizing: border-box;
+    background-color: antiquewhite;
 }
+
+li {
+    font-size: 20px;
+}
+
 ul > li{
     
     justify-content: center;
@@ -12,7 +19,10 @@ ul > li{
 
 li > button {
     color: red;
-    float: right;
+    width: 10px;
+    height: 30px;
+    display: inline-block;
+    
     
  
     
@@ -24,4 +34,5 @@ input {
 button {
     border: none;
   background: none;
+  
 }
