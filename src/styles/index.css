@@ -1,13 +1,22 @@
 .todo {
    border: 1px solid wheat;
-    width: 380px;
+    width: 580px;
     justify-content: center;
-    box-sizing: border-box;
+    background-color: antiquewhite;
+}
+
+.todos {
+    border: 1px solid wheat;
+    width: 580px;
+    justify-content: center;
     background-color: antiquewhite;
 }
 
 li {
     font-size: 20px;
+    box-sizing: border-box;
+    width: 100%;
+
 }
 
 ul > li{
