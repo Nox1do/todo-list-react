@@ -7,6 +7,8 @@ const Home = () => {
   const [inputValue, setInputValue] = useState("");
   const [todos, setTodos] = useState([]);
 
+  //Fetch Api here
+
   return (
     <div className="justify-content-center">
       <div className="todo container d-flex justify-content-center">
