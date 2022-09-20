@@ -6,7 +6,12 @@ import { useState } from "react";
 const Home = () => {
   const [inputValue, setInputValue] = useState("");
   const [todos, setTodos] = useState([]);
-  const emptyArray = []
+  const samplePost = [
+    {
+        "label": "type your task here",
+        "done": true
+    }
+]
 
   //GET
   const getTodos = () => {
@@ -31,12 +36,9 @@ const Home = () => {
     fetch("https://assets.breatheco.de/apis/fake/todos/user/Noeg", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify([{
-        "label": "pedro",
-        "done": false
-        },]) 
+      body: JSON.stringify() 
     })
-      .then((response) => response.json())
+      .then((response) => response.text())
       .then((data) => console.timeLog(data));
   };
 
@@ -44,12 +46,16 @@ const Home = () => {
   //DELETE
   const deleteTodos = () => {
     fetch("https://assets.breatheco.de/apis/fake/todos/user/Noeg", {
-      method: "PUT",
+      method: "DELETE",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(todos) 
+      body: JSON.stringify() 
     })
       .then((response) => response.json())
-      .then((data) => setTodos([]));
+      .then((data) => setTodos([{
+      "label": "Escribe tus tareas",
+      "done": false
+    }]
+      ))
     
    
   };
