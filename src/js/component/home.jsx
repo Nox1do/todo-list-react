@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 //include images into your bundle
 
@@ -7,8 +7,53 @@ const Home = () => {
   const [inputValue, setInputValue] = useState("");
   const [todos, setTodos] = useState([]);
 
-  //Fetch Api here
-  
+  //GET
+  const getTodos = () => {
+    fetch("https://assets.breatheco.de/apis/fake/todos/user/Noeg")
+      .then((res) => res.json())
+      .then((data) => setTodos(data));
+  };
+  //PUT
+  const putTodos = () => {
+    fetch("https://assets.breatheco.de/apis/fake/todos/user/Noeg", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(todos), //cadena de texto
+    })
+      
+      .then((response) => response.text())
+      .then((data) => console.timeLog(data));
+  };
+
+  //POST
+  const postTodos = () => {
+    fetch("https://assets.breatheco.de/apis/fake/todos/user/Noeg", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify([{
+        "label": "pedro",
+        "done": false
+        },]) 
+    })
+      .then((response) => response.json())
+      .then((data) => console.timeLog(data));
+  };
+
+
+  //DELETE
+  const deleteTodos = () => {
+    fetch("https://assets.breatheco.de/apis/fake/todos/user/Noeg", {
+      method: "DELETE",
+     
+    });
+   
+  };
+ 
+
+  //useEffect here
+  useEffect(() => {
+    getTodos();
+  }, []);
 
   return (
     <div className="justify-content-center">
@@ -25,33 +70,48 @@ const Home = () => {
                 return;
               }
               if (enter.key === "Enter") {
-                setTodos(todos.concat(inputValue));
+                setTodos([
+                  { label: enter.target.value, done: false },
+                  ...todos,]);
                 setInputValue("");
               }
             }}
             placeholder="Type text here"
           />
+          <ul>
+            {todos.map((item, index) => {
+              return (
+                <li key={index}>
+                  <strong>{item.label}</strong>
+                  {putTodos()}
+                  <button
+                    className="float-end"
+                    /*filter para funcion borrar al clickear*/
+                    onClick={() =>
+                      setTodos(
+                        todos.filter((t, currentIndex) => index != currentIndex)
+                      )
 
-          {todos.map((item, index) => (
-            <li>
-             <strong>{item}</strong>
-              <button
-                className="float-end"
-                onClick={() =>
-                  /*filter para funcion borrar al clickear*/
-                  setTodos(
-                    todos.filter((t, currentIndex) => index != currentIndex)
-                  )
-                }
-              >
-                Borrar
-              </button>
-            </li>
-          ))}
+                    }
+                  >
+                    Borrar
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
         </ul>
       </div>
       <div className="todos text-center container d-flex justify-content-center">
-        <p><strong> {todos.length} </strong>Items</p>  </div>
+        <div>
+          <p>
+            <button  className="borrar">Borrar lista</button>
+          </p>
+        </div>
+        <p>
+          <strong> {todos.length} </strong>Items
+        </p>
+      </div>
     </div>
   );
 };

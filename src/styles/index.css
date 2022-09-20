@@ -41,7 +41,12 @@ input {
     border: none;
 }
 button {
-    border: none;
+  border: none;
   background: none;
   
+}
+
+.borrar {
+    border: 1px solid black;
+    margin-right: 10px;
 }
