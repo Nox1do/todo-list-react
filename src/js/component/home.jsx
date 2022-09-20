@@ -6,6 +6,7 @@ import { useState } from "react";
 const Home = () => {
   const [inputValue, setInputValue] = useState("");
   const [todos, setTodos] = useState([]);
+  const emptyArray = []
 
   //GET
   const getTodos = () => {
@@ -43,9 +44,13 @@ const Home = () => {
   //DELETE
   const deleteTodos = () => {
     fetch("https://assets.breatheco.de/apis/fake/todos/user/Noeg", {
-      method: "DELETE",
-     
-    });
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(todos) 
+    })
+      .then((response) => response.json())
+      .then((data) => setTodos([]));
+    
    
   };
  
@@ -105,7 +110,7 @@ const Home = () => {
       <div className="todos text-center container d-flex justify-content-center">
         <div>
           <p>
-            <button  className="borrar">Borrar lista</button>
+            <button onClick={deleteTodos} className="borrar">Borrar lista</button>
           </p>
         </div>
         <p>
