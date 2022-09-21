@@ -49,10 +49,7 @@ const Home = () => {
 
   //DELETE
   const deleteTodos = () => {
-    const listaVacia = [{
-      label: "Ya no tienes tareas",
-      done: false
-    }];
+    const listaVacia = [];
     setTodos(listaVacia);
 
     fetch("https://assets.breatheco.de/apis/fake/todos/user/Noeg", {
