@@ -18,6 +18,8 @@ const Home = () => {
     fetch("https://assets.breatheco.de/apis/fake/todos/user/Noeg")
       .then((res) => res.json())
       .then((data) => setTodos(data));
+      
+      
   };
   //PUT
   const putTodos = () => {
@@ -29,6 +31,7 @@ const Home = () => {
       
       .then((response) => response.text())
       .then((data) => console.timeLog(data));
+      
   };
 
   //POST
@@ -40,26 +43,33 @@ const Home = () => {
     })
       .then((response) => response.text())
       .then((data) => console.timeLog(data));
-  };
+      
+ };
 
 
   //DELETE
   const deleteTodos = () => {
+    const listaVacia = [{
+      label: "Ya no tienes tareas",
+      done: false
+    }];
+    setTodos(listaVacia);
+
     fetch("https://assets.breatheco.de/apis/fake/todos/user/Noeg", {
-      method: "DELETE",
+      method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify() 
+      body: JSON.stringify(todos), //cadena de texto
     })
-      .then((response) => response.json())
-      .then((data) => setTodos([{
-      "label": "Escribe tus tareas",
-      "done": false
-    }]
-      ))
-    
-   
+      
+      .then((response) => {
+       return  response.json();})
+      .then((data) => { console.timeLog(data);})
+      .catch((error)=>{
+        console.log(error);
+      }
+      )
+      
   };
- 
 
   //useEffect here
   useEffect(() => {
